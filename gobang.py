@@ -86,7 +86,7 @@ def ru():
                 index = alphalist.index(j)
                 ii = str(i + 1)
                 for k in range(4):
-                    if tb[alphalist[index(j) + 1] + ii] != turn:
+                    if tb[alphalist[index + 1] + ii] != turn:
                         break
                     else:
                         n += 1
