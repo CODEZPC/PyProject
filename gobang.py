@@ -24,7 +24,8 @@ def prboard(board):
                 print(tb[j + str(i)],end = '|')
             else:
                 print(tb[j + str(i)])
-        print('   -+-+-+-+-+-+-+-+-+-')
+        if i != 10:
+            print('   -+-+-+-+-+-+-+-+-+-')
 
 def row():
     global alphalist,i,j,tb,turn
@@ -35,9 +36,9 @@ def row():
                 n += 1
                 if n == 5:
                     if turn == 'X':
-                        print('Winner is',P1,'!')
+                        print('获胜者是',P1,'!')
                     else:
-                        print('Winner is',P2,'!')
+                        print('获胜者是',P2,'!')
                     exit()
 
 def col():
@@ -49,9 +50,9 @@ def col():
                 n += 1
                 if n == 5:
                     if turn == 'X':
-                        print('Winner is',P1,'!')
+                        print('获胜者是',P1,'!')
                     else:
-                        print('Winner is',P2,'!')
+                        print('获胜者是',P2,'!')
                     exit()
 
 def ld():
@@ -71,9 +72,9 @@ def ld():
                         ii = str(int(ii) + 1)
                 if n == 5:
                     if turn == 'X':
-                        print('Winner is',P1,'!')
+                        print('获胜者是',P1,'!')
                     else:
-                        print('Winner is',P2,'!')
+                        print('获胜者是',P2,'!')
                     exit()
                 n = 0
 
@@ -94,9 +95,9 @@ def ru():
                         ii = str(int(ii) + 1)
                 if n == 5:
                     if turn == 'X':
-                        print('Winner is',P1,'!')
+                        print('获胜者是',P1,'!')
                     else:
-                        print('Winner is',P2,'!')
+                        print('获胜者是',P2,'!')
                     exit()
                 n = 0
 
@@ -108,31 +109,34 @@ def somebodywin():
 
 if __name__ == '__main__':
     prboard(tb)
-    P1 = input('What\'s the 1P name:')
-    print(P1,'is the \'X\'.')
-    P2 = input('What\'s the 2P name:')
+    P1 = input('请输入玩家1的名字:')
+    print(P1 + '执"X"。')
+    P2 = input('请输入玩家2的名字:')
     if P1 == P2:
         P2 += '(1)'
-    print(P2,'is the \'O\'.')
+    print(P2 + '执"O"。')
     print()
     #name format
     turn = 'X'
     while True:
         prboard(tb)
-        move = input('Turn for ' + turn + '. Move on which space:')
+        if turn == 'X':
+            move = input('轮到' + P1 + '了')
+        else:
+            move = input('轮到' + P2 + '了')
         try:
             if tb[move] != ' ':
-                print('Error.')
+                print('这里有棋子了！')
                 continue
             else:
                 tb[move] = turn
         except:
-            print('Enter Error.')
+            print('输入错误，\n格式:\n大写字母+数字\n例:\nF6')
             continue
         #enter
         somebodywin()
         if ' ' not in tb.values():
-            print('No any winner.')
+            print('平局')
             exit()
         #winner
         if turn == 'X':
